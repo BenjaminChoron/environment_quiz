@@ -1,3 +1,4 @@
+import 'package:environment_quiz/gradient_container.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,8 +12,14 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       home: Scaffold(
-        body: Center(
-          child: Text('Environment Quiz'),
+        body: GradientContainer(
+          colors: [Colors.blue, Colors.green],
+          child: SafeArea(
+            child: Padding(
+              padding: EdgeInsets.all(40),
+              child: Text('Hello, World!'),
+            ),
+          ),
         ),
       ),
     );
