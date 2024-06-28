@@ -28,7 +28,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
           ),
         ),
         const SizedBox(height: 30),
-        ...currentQuestion.options.map((option) {
+        ...currentQuestion.shuffledOptions.map((option) {
           return AnswerButton(text: option, onPressed: () {});
         })
       ],
