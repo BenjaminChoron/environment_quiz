@@ -1,4 +1,5 @@
 import 'package:environment_quiz/gradient_container.dart';
+import 'package:environment_quiz/start_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,8 +17,8 @@ class MainApp extends StatelessWidget {
           colors: [Colors.blue, Colors.green],
           child: SafeArea(
             child: Padding(
-              padding: EdgeInsets.all(40),
-              child: Text('Hello, World!'),
+              padding: EdgeInsets.all(30),
+              child: StartScreen(),
             ),
           ),
         ),
