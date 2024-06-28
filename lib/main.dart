@@ -1,6 +1,5 @@
-import 'package:environment_quiz/gradient_container.dart';
-import 'package:environment_quiz/start_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:environment_quiz/quiz.dart';
 
 void main() {
   runApp(const MainApp());
@@ -11,18 +10,6 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: GradientContainer(
-          colors: [Colors.blue, Colors.green],
-          child: SafeArea(
-            child: Padding(
-              padding: EdgeInsets.all(30),
-              child: StartScreen(),
-            ),
-          ),
-        ),
-      ),
-    );
+    return const Quiz();
   }
 }

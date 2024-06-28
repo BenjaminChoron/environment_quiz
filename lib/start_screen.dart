@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class StartScreen extends StatelessWidget {
-  const StartScreen({super.key});
+  const StartScreen({super.key, required this.startQuiz});
+
+  final void Function() startQuiz;
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +19,14 @@ class StartScreen extends StatelessWidget {
         Text(
           'Environment Quiz',
           style: GoogleFonts.concertOne(
-            fontSize: 40,
+            fontSize: 30,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
         ),
         const SizedBox(height: 50),
         ElevatedButton.icon(
-          onPressed: () {},
+          onPressed: startQuiz,
           style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
             backgroundColor: Colors.white,
