@@ -1,3 +1,4 @@
+import 'package:environment_quiz/answer_button.dart';
 import 'package:environment_quiz/questions.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -28,7 +29,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
         ),
         const SizedBox(height: 30),
         ...currentQuestion.options.map((option) {
-          return Text(option);
+          return AnswerButton(text: option, onPressed: () {});
         })
       ],
     );
