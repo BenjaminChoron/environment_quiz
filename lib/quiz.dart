@@ -1,7 +1,10 @@
+import 'package:environment_quiz/questions.dart';
+import 'package:environment_quiz/results_screen.dart';
+import 'package:flutter/material.dart';
+
 import 'package:environment_quiz/gradient_container.dart';
 import 'package:environment_quiz/questions_screen.dart';
 import 'package:environment_quiz/start_screen.dart';
-import 'package:flutter/material.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -29,6 +32,12 @@ class _QuizState extends State<Quiz> {
 
   void chooseAnswer(String answer) {
     selectedAnswers.add(answer);
+
+    if (selectedAnswers.length == questions.length) {
+      setState(() {
+        activeScreen = ResultsScreen(chosenAnswers: selectedAnswers);
+      });
+    }
   }
 
   @override
