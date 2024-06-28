@@ -1,3 +1,5 @@
+import 'package:environment_quiz/questions.dart';
+import 'package:environment_quiz/questions_summary.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -8,8 +10,30 @@ class ResultsScreen extends StatelessWidget {
   final List<String> chosenAnswers;
   final void Function() onRestartQuiz;
 
+  List<Map<String, Object>> get summaryData {
+    final List<Map<String, Object>> summary = [];
+
+    for (int i = 0; i < chosenAnswers.length; i++) {
+      summary.add({
+        'question_index': i,
+        'question': questions[i].question,
+        'correct_answer': questions[i].options[0],
+        'user_answer': chosenAnswers[i],
+      });
+    }
+
+    return summary;
+  }
+
   @override
   Widget build(BuildContext context) {
+    final numTotalQuestions = questions.length;
+    final numCorrectAnswers = summaryData
+        .where(
+          (data) => data['correct_answer'] == data['user_answer'],
+        )
+        .length;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -22,15 +46,23 @@ class ResultsScreen extends StatelessWidget {
             color: Colors.white,
           ),
         ),
-        const SizedBox(height: 20),
-        ...chosenAnswers.map((answer) {
-          return Text(answer);
-        }),
-        const SizedBox(height: 40),
+        const SizedBox(height: 10),
+        Text(
+          'You answered $numCorrectAnswers out of $numTotalQuestions questions correctly!',
+          style: const TextStyle(
+            fontSize: 18,
+            color: Colors.white,
+          ),
+        ),
+        const SizedBox(height: 10),
+        QuestionsSummary(summaryData: summaryData),
+        const SizedBox(
+          height: 20,
+        ),
         ElevatedButton.icon(
           onPressed: onRestartQuiz,
           style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             backgroundColor: Colors.white,
             foregroundColor: Colors.green,
           ),
@@ -42,7 +74,7 @@ class ResultsScreen extends StatelessWidget {
             'Restart Quiz',
             style: GoogleFonts.montserrat(
               color: Colors.black,
-              fontSize: 20,
+              fontSize: 16,
             ),
           ),
         ),
